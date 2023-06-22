@@ -7,7 +7,7 @@
     "url": "git+https://github.com/jonghwa3471/wetube-reloaded.git"
   },
   "scripts": {
-    "win": "node index.js"
+    "dev": "nodemon --exec babel-node index.js"
   },
   "author": "Jonghwa Song",
   "license": "MIT",
@@ -17,5 +17,11 @@
   "homepage": "https://github.com/jonghwa3471/wetube-reloaded#readme",
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/node": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "nodemon": "^2.0.22"
   }
 }
