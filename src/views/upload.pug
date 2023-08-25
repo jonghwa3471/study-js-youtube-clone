@@ -1,6 +1,15 @@
 extends base
 
 block content
-  form(method="POST", action="/videos/upload") <!-- action 값을 지정하지 않아도 되는데(현재 위치에 post 할 것이기 때문) 알기 쉽게 그냥 적어놓음 -->
+  if errorMessage
+    span= errorMessage
+  form(method="POST")
     input(name="title", placeholder="Title", type="text", required)
+    input(name="description", placeholder="Description", type="text", required)
+    input(
+      name="hashtags",
+      placeholder="Hashtags, separated by comma.",
+      type="text",
+      required
+    )
     input(type="submit", value="Upload Video")
