@@ -4,8 +4,20 @@ block content
   if errorMessage
     span= errorMessage
   form(method="POST")
-    input(name="title", placeholder="Title", type="text", required)
-    input(name="description", placeholder="Description", type="text", required)
+    input(
+      name="title",
+      maxlength=80,
+      placeholder="Title",
+      type="text",
+      required
+    )
+    input(
+      name="description",
+      minlength=20,
+      placeholder="Description",
+      type="text",
+      required
+    )
     input(
       name="hashtags",
       placeholder="Hashtags, separated by comma.",
