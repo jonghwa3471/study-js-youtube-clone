@@ -61,7 +61,7 @@ export const postLogin = async (req, res) => {
 export const startGithubLogin = (req, res) => {
   const baseUrl = "https://github.com/login/oauth/authorize";
   const config = {
-    client_id: "005f235227afd9d39129",
+    client_id: process.env.GH_CLIENT,
     allow_signup: false,
     scope: "read:user user:email",
   };
@@ -70,7 +70,14 @@ export const startGithubLogin = (req, res) => {
   return res.redirect(finalUrl);
 };
 
-export const finishGithubLogin = (req, res) => {};
+export const finishGithubLogin = (req, res) => {
+  const config = {
+    client_id: process.env.GH_CLIENT,
+    client_secret: process.env.GH_SECRET,
+    code: req.query.code,
+  };
+  console.log(config);
+};
 export const edit = (req, res) => res.send("Edit User");
 export const remove = (req, res) => res.send("Remove User");
 export const logout = (req, res) => res.send("Log out");
