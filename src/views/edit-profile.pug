@@ -33,3 +33,6 @@ block content
       value=loggedInUser.location
     )
     input(type="submit", value="Update Profile")
+    if !loggedInUser.socialOnly
+      hr
+      a(href="change-password") Change Password &rarr;
