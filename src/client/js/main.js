@@ -1,3 +1,3 @@
 import "../scss/styles.scss";
 
-alert("hello, there");
+alert("hello, there!");
