@@ -1,7 +1,7 @@
 extends base
 
 block content
-  video(src="/" + video.fileUrl, controls, width=900, height=500)
+  video(src="/" + video.fileUrl, width=900, height=500)
   div
     button#play play
     button#mute Mute
@@ -10,6 +10,9 @@ block content
       span#currentTime 00:00
       span &nbsp;/&nbsp;
       span#totalTime 00:00
+    div
+      input#timeline(type="range", step="1", value="0", min="0")
+
   //-
     div
       p= video.description
