@@ -130,7 +130,25 @@ const handleMouseLeave = () => {
   controlsTimeout = setTimeout(hideControls, 3000);
 };
 
+const handleSpaceBarPlay = (event) => {
+  if (event.keyCode === 32 && event.target.type !== "textarea") {
+    videoControls.classList.add("showing");
+    if (controlsTimeout) {
+      clearTimeout(controlsTimeout);
+      controlsTimeout = null;
+    }
+    controlsTimeout = setTimeout(hideControls, 3000);
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+    playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";
+  }
+};
+
 playBtn.addEventListener("click", handlePlayClick);
+video.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleInputVolumeRange);
 volumeRange.addEventListener("change", handleChangeVolumeRange);
@@ -141,3 +159,4 @@ videoContainer.addEventListener("mouseleave", handleMouseLeave);
 timeline.addEventListener("input", handleTimelineChange);
 timeline.addEventListener("change", handleTimelineSet);
 fullScreenBtn.addEventListener("click", handleFullScreen);
+document.addEventListener("keydown", handleSpaceBarPlay);
