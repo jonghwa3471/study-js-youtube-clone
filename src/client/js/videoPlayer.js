@@ -147,6 +147,13 @@ const handleSpaceBarPlay = (event) => {
   }
 };
 
+const handleEnded = () => {
+  const { id } = videoContainer.dataset;
+  fetch(`/api/videos/${id}/view`, {
+    method: "POST",
+  });
+};
+
 playBtn.addEventListener("click", handlePlayClick);
 video.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
@@ -154,6 +161,7 @@ volumeRange.addEventListener("input", handleInputVolumeRange);
 volumeRange.addEventListener("change", handleChangeVolumeRange);
 video.addEventListener("loadeddata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
+video.addEventListener("ended", handleEnded);
 videoContainer.addEventListener("mousemove", handleMouseMove);
 videoContainer.addEventListener("mouseleave", handleMouseLeave);
 timeline.addEventListener("input", handleTimelineChange);

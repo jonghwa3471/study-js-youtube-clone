@@ -1,14 +1,14 @@
 extends base
 
 block content
-  #videoContainer
+  #videoContainer(data-id=video._id)
     video(src="/" + video.fileUrl)
     #videoControls.videoControls
       .videoControls__play
         span#play.videoControls__playBtn
           i.fas.fa-play
         .videoControls__time
-          span#currenTime 00:00
+          span#currentTime 00:00
           span &nbsp;/&nbsp;
           span#totalTime 00:00
       input#timeline.videoControls__timeline(
