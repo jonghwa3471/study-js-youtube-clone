@@ -1,4 +1,3 @@
-import flash from "express-flash";
 import multer from "multer";
 
 export const localsMiddleware = (req, res, next) => {
