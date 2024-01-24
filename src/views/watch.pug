@@ -46,7 +46,7 @@ block content
       each comment in video.comments.reverse()
         li.video__comment
           i.fas.fa-comment
-          | &nbsp#{ comment.text }
+          | &nbsp;#{ comment.text }
 block scripts
   script(src="/static/js/videoPlayer.js")
   if (loggedIn)
