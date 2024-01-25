@@ -2,9 +2,9 @@ import express from "express";
 import {
   watch,
   getUpload,
-  postUpload,
   getEdit,
   postEdit,
+  postUpload,
   deleteVideo,
 } from "../controllers/videoController";
 import { protectorMiddleware, videoUpload } from "../middlewares";

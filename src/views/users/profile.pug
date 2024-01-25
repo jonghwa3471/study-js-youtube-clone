@@ -3,7 +3,9 @@ include ../mixins/video
 
 block content
   .profile__data
-    if loggedInUser.socialOnly
+    if !user.avatarUrl
+      span.header__icon 😃
+    else if user.socialOnly
       img.avatar(src=user.avatarUrl)
     else
       img.avatar(src="/" + user.avatarUrl)

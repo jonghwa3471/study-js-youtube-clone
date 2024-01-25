@@ -84,6 +84,7 @@ export const postUpload = async (req, res) => {
     user.save();
     return res.redirect("/");
   } catch (error) {
+    console.log(error);
     return res.status(400).render("upload", {
       pageTitle: "Upload Video",
       errorMessage: error._message,
@@ -139,12 +140,10 @@ export const createComment = async (req, res) => {
     body: { text },
     params: { id },
   } = req;
-
   const video = await Video.findById(id);
   if (!video) {
     return res.sendStatus(404);
   }
-
   const comment = await Comment.create({
     text,
     owner: user._id,
