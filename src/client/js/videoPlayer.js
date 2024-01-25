@@ -150,6 +150,8 @@ const handleEnded = () => {
   fetch(`/api/videos/${id}/view`, {
     method: "POST",
   });
+  video.currentTime = 0;
+  playBtnIcon.className = "fas fa-play";
 };
 
 playBtn.addEventListener("click", handlePlayClick);

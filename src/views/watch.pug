@@ -8,7 +8,7 @@ block content
         span#play.videoControls__playBtn
           i.fas.fa-play
         .videoControls__time
-          span#currenTime 00:00
+          span#currentTime 00:00
           span &nbsp;/&nbsp;
           span#totalTime 00:00
       input#timeline.videoControls__timeline(
@@ -43,9 +43,10 @@ block content
   .video__comments
     ul
       each comment in video.comments.reverse()
-        li.video__comment
+        li.video__comment(data-id=comment._id)
           i.fas.fa-comment
-          span #{ comment.text }
+          span &nbsp;#{ comment.text }
+          span ❌
 block scripts
   script(src="/static/js/videoPlayer.js")
   if loggedIn
