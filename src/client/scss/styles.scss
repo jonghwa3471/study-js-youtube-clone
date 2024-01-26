@@ -63,8 +63,13 @@ main {
   text-align: center;
   animation: goAway 0.5s ease-in-out forwards;
   animation-delay: 3s;
-  &.error {
+  &.error,
+  &.info {
     background-color: tomato;
+    color: white;
+  }
+  &.success {
+    background-color: green;
     color: white;
   }
 }

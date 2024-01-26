@@ -56,6 +56,7 @@ export const postLogin = async (req, res) => {
   }
   req.session.loggedIn = true;
   req.session.user = user;
+  req.flash("success", "Logged In");
   return res.redirect("/");
 };
 
@@ -126,14 +127,16 @@ export const finishGithubLogin = async (req, res) => {
     }
     req.session.loggedIn = true;
     req.session.user = user;
+    req.flash("success", "Logged In");
     return res.redirect("/");
   } else {
     return res.redirect("/login");
   }
 };
 export const logout = (req, res) => {
-  req.session.destroy();
-  req.flash("info", "Bye Bye");
+  req.session.user = null;
+  req.session.loggedIn = false;
+  req.flash("info", "Logged Out");
   return res.redirect("/");
 };
 export const getEdit = (req, res) => {

@@ -1,5 +1,15 @@
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
+const deleteBtns = document.querySelectorAll(".deleteBtn");
+
+const handleDelete = async (event) => {
+  const deleteBtn = event.target.parentElement;
+  deleteBtn.remove();
+  const commentId = deleteBtn.dataset.id;
+  await fetch(`/api/comments/${commentId}`, {
+    method: "DELETE",
+  });
+};
 
 const addComment = (text, id) => {
   const videoComments = document.querySelector(".video__comments ul");
@@ -11,11 +21,18 @@ const addComment = (text, id) => {
   const span = document.createElement("span");
   span.innerText = ` ${text}`;
   const span2 = document.createElement("span");
-  span2.innerText = "❌";
+  span2.className = "fas fa-xmark";
   newComment.appendChild(icon);
   newComment.appendChild(span);
   newComment.appendChild(span2);
   videoComments.prepend(newComment);
+
+  const handleDeleteNew = (event) => {
+    event.target.parentElement.remove();
+  };
+
+  span2.addEventListener("click", handleDeleteNew);
+  span2.addEventListener("click", handleDelete);
 };
 
 const handleSubmit = async (event) => {
@@ -42,4 +59,9 @@ const handleSubmit = async (event) => {
 
 if (form) {
   form.addEventListener("submit", handleSubmit);
+  if (deleteBtns) {
+    deleteBtns.forEach((btn) => {
+      btn.addEventListener("click", handleDelete);
+    });
+  }
 }

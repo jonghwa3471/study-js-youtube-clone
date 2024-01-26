@@ -31,6 +31,7 @@ block content
       a(href=`/users/${video.owner._id}`)= video.owner.name
     small.video__createdAt= new Date(video.createdAt).toLocaleDateString("ko-kr", { weekday: "long", year: "numeric", month: "long", day: "numeric" })
     if String(video.owner._id) === String(loggedInUser._id)
+      br
       a(href=`${video.id}/edit`) Edit Video &rarr;
       br
       a(href=`${video.id}/delete`) Delete Video &rarr;
@@ -45,7 +46,8 @@ block content
         li.video__comment(data-id=comment._id)
           i.fas.fa-comment
           span &nbsp;#{ comment.text }
-          span ❌
+          if loggedIn && String(comment.owner._id) === String(loggedInUser._id)
+            i.deleteBtn.fas.fa-xmark
 block scripts
   script(src="/static/js/videoPlayer.js")
   if loggedIn
