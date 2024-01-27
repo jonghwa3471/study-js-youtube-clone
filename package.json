@@ -7,6 +7,8 @@
     "url": "git+https://github.com/jonghwa3471/wetube-reloaded.git"
   },
   "scripts": {
+    "start": "node build/init.js",
+    "build:server": "babel src -d build",
     "dev:server": "nodemon",
     "dev:assets": "webpack"
   },
@@ -31,7 +33,8 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.5",
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.23.9",
     "@babel/node": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
     "@prettier/plugin-pug": "^2.5.1",
