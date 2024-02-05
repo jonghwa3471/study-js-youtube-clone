@@ -72,8 +72,10 @@ const formatTime = (seconds) =>
   new Date(seconds * 1000).toISOString().substring(14, 19);
 
 const handleLoadedMetadata = () => {
-  totalTime.innerText = formatTime(Math.floor(video.duration));
-  timeline.max = Math.floor(video.duration);
+  if (!isNaN(video.duration)) {
+    totalTime.innerText = formatTime(Math.floor(video.duration));
+    timeline.max = Math.floor(video.duration);
+  }
 };
 
 const handleTimeUpdate = () => {
@@ -154,12 +156,12 @@ const handleEnded = () => {
   playBtnIcon.className = "fas fa-play";
 };
 
+video.addEventListener("canplay", handleLoadedMetadata);
 playBtn.addEventListener("click", handlePlayClick);
 video.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);
 volumeRange.addEventListener("input", handleInputVolumeRange);
 volumeRange.addEventListener("change", handleChangeVolumeRange);
-video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("ended", handleEnded);
 videoContainer.addEventListener("mousemove", handleMouseMove);
