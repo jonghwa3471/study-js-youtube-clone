@@ -123,11 +123,11 @@ const handleMouseMove = () => {
     controlsMovementTimeout = null;
   }
   videoControls.classList.add("showing");
-  controlsMovementTimeout = setTimeout(hideControls, 3000);
+  controlsMovementTimeout = setTimeout(hideControls, 2000);
 };
 
 const handleMouseLeave = () => {
-  controlsTimeout = setTimeout(hideControls, 3000);
+  controlsTimeout = setTimeout(hideControls, 2000);
 };
 
 const handleSpaceBarPlay = (event) => {
@@ -137,7 +137,7 @@ const handleSpaceBarPlay = (event) => {
       clearTimeout(controlsTimeout);
       controlsTimeout = null;
     }
-    controlsTimeout = setTimeout(hideControls, 3000);
+    controlsTimeout = setTimeout(hideControls, 2000);
     if (video.paused) {
       video.play();
     } else {
@@ -156,6 +156,7 @@ const handleEnded = () => {
   playBtnIcon.className = "fas fa-play";
 };
 
+handleLoadedMetadata();
 video.addEventListener("canplay", handleLoadedMetadata);
 playBtn.addEventListener("click", handlePlayClick);
 video.addEventListener("click", handlePlayClick);
