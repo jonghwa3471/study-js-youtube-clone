@@ -1,6 +1,26 @@
 import multer from "multer";
 import multerS3 from "multer-s3";
-import { S3Client } from "@aws-sdk/client-s3";
+import { S3Client, DeleteObjectCommand } from "@aws-sdk/client-s3";
+
+export const avatarDeleteMiddleware = async (req, res, next) => {
+  if (!req.file) {
+    console.log("!req.file");
+    return next();
+  }
+  const key = `images/${req.session.user.avatarUrl.split("/")[4]}`;
+  const params = {
+    Bucket: "wetube-jonghwa",
+    Key: key,
+  };
+  try {
+    const data = await s3.send(new DeleteObjectCommand(params));
+    console.log("Success. Object deleted.", data);
+  } catch (error) {
+    console.log("Error", error);
+    return res.redirect("/user/edit");
+  }
+  next();
+};
 
 const s3 = new S3Client({
   region: "ap-northeast-2",
