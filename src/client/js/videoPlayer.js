@@ -123,11 +123,11 @@ const handleMouseMove = () => {
     controlsMovementTimeout = null;
   }
   videoControls.classList.add("showing");
-  controlsMovementTimeout = setTimeout(hideControls, 2000);
+  controlsMovementTimeout = setTimeout(hideControls, 1000);
 };
 
 const handleMouseLeave = () => {
-  controlsTimeout = setTimeout(hideControls, 2000);
+  controlsTimeout = setTimeout(hideControls, 1000);
 };
 
 const handleSpaceBarPlay = (event) => {
@@ -137,7 +137,7 @@ const handleSpaceBarPlay = (event) => {
       clearTimeout(controlsTimeout);
       controlsTimeout = null;
     }
-    controlsTimeout = setTimeout(hideControls, 2000);
+    controlsTimeout = setTimeout(hideControls, 1000);
     if (video.paused) {
       video.play();
     } else {
