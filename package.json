@@ -46,7 +46,6 @@
     "css-loader": "^6.8.1",
     "mini-css-extract-plugin": "^2.7.6",
     "nodemon": "^2.0.22",
-    "prettier": "^2.8.8",
     "sass": "^1.69.6",
     "sass-loader": "^13.3.3",
     "style-loader": "^3.3.3",
