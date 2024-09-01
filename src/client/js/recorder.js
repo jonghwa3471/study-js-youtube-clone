@@ -29,7 +29,7 @@ const handleDownload = async () => {
 
   actionBtn.disabled = true;
 
-  const ffmpeg = createFFmpeg({ log: true });
+  const ffmpeg = new FFmpeg();
   await ffmpeg.load();
 
   await ffmpeg.writeFile(files.input, await fetchFile(videoFile));

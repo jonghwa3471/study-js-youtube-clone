@@ -1,0 +1,22 @@
+# fly.toml app configuration file generated for wetube-reloaded-2024-jonghwa on 2024-09-01T21:07:34+09:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'wetube-reloaded-2024-jonghwa'
+primary_region = 'nrt'
+
+[build]
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
