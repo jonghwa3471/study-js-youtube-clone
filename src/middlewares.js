@@ -7,7 +7,7 @@ export const avatarDeleteMiddleware = async (req, res, next) => {
     console.log("!req.file");
     return next();
   }
-  const key = `images/${req.session.user.avatarUrl.split("/")[4]}`;
+  const key = `images/${req.session.user.avatarUrl.split("/")[5]}`;
   const params = {
     Bucket: "wetube-jonghwa",
     Key: key,
