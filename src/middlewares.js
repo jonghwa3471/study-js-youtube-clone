@@ -22,31 +22,31 @@ export const avatarDeleteMiddleware = async (req, res, next) => {
   next();
 };
 
-const s3 = new S3Client({
+const s3Client = new S3Client({
   region: "ap-northeast-2",
   credentials: {
-    accessKeyId: process.env.AWS_ID,
+    accessKeyId: process.env.AWS_KEY,
     secretAccessKey: process.env.AWS_SECRET,
   },
 });
 
 const isRender = process.env.NODE_ENV === "production";
 
-const s3ImageUploader = multerS3({
-  s3: s3,
+const s3AvatarStorage = multerS3({
+  s3: s3Client,
   bucket: "wetube-jonghwa",
   acl: "public-read",
   key: (req, file, cb) => {
-    cb(null, "images/" + file.originalname);
+    cb(null, `images/${req.session.user._id}/${file.originalname}`);
   },
 });
 
-const s3VideoUploader = multerS3({
-  s3: s3,
+const s3VideoStorage = multerS3({
+  s3: s3Client,
   bucket: "wetube-jonghwa",
   acl: "public-read",
   key: (req, file, cb) => {
-    cb(null, "videos/" + file.originalname);
+    cb(null, `videos/${req.session.user._id}/${file.originalname}`);
   },
 });
 
@@ -79,11 +79,11 @@ export const publicOnlyMiddleware = (req, res, next) => {
 export const avatarUpload = multer({
   dest: "uploads/avatars/",
   limits: { fileSize: 3000000 },
-  storage: isRender ? s3ImageUploader : undefined,
+  storage: isRender ? s3AvatarStorage : undefined,
 });
 
 export const videoUpload = multer({
   dest: "uploads/videos/",
   limits: { fileSize: 100000000 },
-  storage: isRender ? s3VideoUploader : undefined,
+  storage: isRender ? s3VideoStorage : undefined,
 });
